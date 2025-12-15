@@ -79,7 +79,7 @@ class PinService
     * Count confirmed pin from the reservation->pin_valid_from to now
     * Let say each confirmed pin takes 2 minutes per person, it will ads up as minutes and will be added as new valid until
     */
-    public function extendPinForQueue() {
+    public function extendPinForQueue(): self  {
         $validFrom = Carbon::parse($this->reservation->pin_valid_from);
         $validUntil = Carbon::parse($this->reservation->pin_valid_until);
         $now = Carbon::now();
