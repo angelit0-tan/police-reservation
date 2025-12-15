@@ -8,7 +8,7 @@ Rename .env.example into .env
 Set Your TimeZone
 
 ```bash
-Go to: config/app.php and set the timezone value according to your region
+Go to: config/app.php and set the timezone value according to your region or state
 
 Example:
 
