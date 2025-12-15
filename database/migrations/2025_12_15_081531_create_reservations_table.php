@@ -21,7 +21,6 @@ return new class extends Migration
             $table->datetime('confirmed_at')->nullable();
             $table->datetime('pin_valid_from')->nullable();
             $table->datetime('pin_valid_until')->nullable();
-            $table->integer('pin_extension_count')->default(0);
             $table->timestamps();
         });
     }

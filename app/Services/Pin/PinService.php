@@ -88,8 +88,8 @@ class PinService
                         ->whereBetween('confirmed_at', [$validFrom, $now])
                         ->count();
 
-        // If found any confirmed pin
-        if ($confirmedCount) {
+        // If found any confirmed pins and pin not yet confirmed
+        if ($confirmedCount && !$this->reservation->confirmed_at) {
             $newPinValidUntil = $validUntil->copy()->addMinutes($confirmedCount * self::QUEUE_MINUTES_PER_PERSON);
 
             // Make sure that
@@ -98,7 +98,6 @@ class PinService
             // now < new pin valid until = new pin valid until is not expired
             if ($now->greaterThan($validUntil) && $validUntil->lessThan($newPinValidUntil) && $now->lessThan($newPinValidUntil)) {
                 $this->reservation->pin_valid_until = $newPinValidUntil;
-                $this->reservation->pin_extension_count += 1;
                 $this->reservation->save();
             }
         }
