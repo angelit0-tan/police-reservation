@@ -1,6 +1,6 @@
 ### `Setup`
 
-Add .env:
+Set .env:
 
 ```bash
 Rename .env.example into .env

@@ -35,7 +35,7 @@
 </template>
 <script setup>
     import axios from 'axios';
-    import { ref } from 'vue';
+    import { onMounted, ref } from 'vue';
 
     const form = ref({
         lastName: null,
@@ -58,18 +58,23 @@
             reservation_time: form.value.reservation
         }).then((data) => {
 
-            // clear fields
-            form.value = {
-                lastName: null,
-                firstName: null,
-                phone: null,
-                reservation: null,
-            };
-
             form.value.success = data.data.message
+            
+            // clear fields
+            form.value.lastName = null;
+            form.value.firstName = null;
+            form.value.phone = null;
+            
 
         }).catch((e) => {
             form.value.error = e.response.data.message;
         });
     }
+
+    onMounted(() => {
+        const now = new Date();
+        form.value.reservation = new Date(
+            now.getTime() - now.getTimezoneOffset() * 60000
+        ).toISOString().slice(0, 16);
+    })
 </script>
