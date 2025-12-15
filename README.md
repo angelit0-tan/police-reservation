@@ -8,7 +8,15 @@ Rename .env.example into .env
 Set Your TimeZone
 
 ```bash
-goto config/app.php and set the timezone value according to your region
+Go to: config/app.php and set the timezone value according to your region
+
+Example:
+
+'timezone' => 'Europe/Prague'
+
+or
+
+'timezone' => 'UTC'
 ```
 
 Build Docker Image:
@@ -31,6 +39,9 @@ docker-compose exec app php artisan key:generate
 
 # migrate
 docker-compose exec app php artisan migrate
+
+# config clear
+docker-compose exec app php artisan config:clear
 ```
 
 Run the system:
