@@ -58,16 +58,16 @@ class PinService
         $validUntil = Carbon::parse($this->reservation->pin_valid_until);
         $confirmedAt = Carbon::parse($this->reservation->confirmed_at);
        
+        if (!empty($this->reservation->confirmed_at)) {
+            abort(Response::HTTP_BAD_REQUEST, "PIN already confirmed at {$confirmedAt}");
+        }
+
         if ($now->greaterThan($validUntil)) {
             abort(Response::HTTP_BAD_REQUEST, "PIN Expired at {$validUntil}");
         }
 
         if ($now->lessThan($validFrom)) {
             abort(Response::HTTP_BAD_REQUEST, "PIN not active, please wait until {$validFrom}");
-        }
-
-        if (!empty($this->reservation->confirmed_at)) {
-            abort(Response::HTTP_BAD_REQUEST, "PIN already confirmed at {$confirmedAt}");
         }
 
         return $this;
