@@ -13,8 +13,8 @@
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
+                            <th scope="col">Firstname</th>
+                            <th scope="col">Lastname</th>
                             <th scope="col">Phone</th>
                             <th scope="col">PIN</th>
                             <th scope="col">Is Confirmed</th>
